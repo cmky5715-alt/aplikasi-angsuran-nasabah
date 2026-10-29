@@ -19,6 +19,11 @@ RUN mkdir -p database \
     && touch database/database.sqlite \
     && chmod -R 775 storage bootstrap/cache database
 
+ENV APP_KEY=base64:DOujsdxOmGmxaeKF5W3KmQoHoYs/W26g92Ssz9gHl0s=
+ENV APP_DEBUG=true
+ENV DB_CONNECTION=sqlite
+ENV SESSION_DRIVER=cookie
+
 EXPOSE 8000
 
 CMD php artisan migrate --force && php artisan config:clear && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
